@@ -1,6 +1,7 @@
 """Decorators."""
 
 import functools
+import sys
 
 
 def debug(func: object) -> object:
@@ -15,3 +16,21 @@ def debug(func: object) -> object:
         print(f"{func.__name__!r} returned {value!r}")
         return value
     return wrapper
+
+
+def verbose(message: str, stream: str="stdout") -> object:
+    """Print verbose message about an ongoing operation."""
+    def decorator(func: object) -> object:
+        @functools.wraps(func)
+        def wrapper(*args: tuple, **kwargs: dict) -> None:
+            if not isinstance(message, str):
+                raise TypeError(f"Invalid type {message}, needs to be string")
+            if stream == "stdout":
+                print(message, file=sys.stdout)
+            elif stream == "stderr":
+                print(message, file=sys.stderr)
+            else:
+                raise ValueError(f"Invalid value {stream}, use 'stdout' or 'stderr'")
+            func(*args, **kwargs)
+        return wrapper
+    return decorator
