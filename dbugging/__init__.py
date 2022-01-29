@@ -12,3 +12,4 @@ __status__: str = "Alpha"
 
 from dbugging.decorators import debug
 from dbugging.decorators import verbose
+from dbugging.decorators import slow_down
