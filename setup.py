@@ -13,7 +13,7 @@ setup(
     name="dbugging",  # Required
 
     # Version?
-    version="0.0.1a0",  # Required
+    version="0.0.1a1",  # Required
 
     # What does your project do?
     description="Tools to help with debugging your Python code",  # Optional
