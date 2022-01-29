@@ -2,6 +2,7 @@
 
 import functools
 import sys
+import time
 
 
 def debug(func: object) -> object:
@@ -31,6 +32,19 @@ def verbose(message: str, stream: str="stdout") -> object:
                 print(message, file=sys.stderr)
             else:
                 raise ValueError(f"Invalid value {stream}, use 'stdout' or 'stderr'")
+            func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+def slow_down(interval: int=1) -> object:
+    """Sleep [interval] before calling the function."""
+    def decorator(func: object) -> object:
+        @functools.wraps(func)
+        def wrapper(*args: tuple, **kwargs: dict) -> None:
+            if not isinstance(interval, int):
+                raise TypeError("Interval must be an integer")
+            time.sleep(interval)
             func(*args, **kwargs)
         return wrapper
     return decorator
