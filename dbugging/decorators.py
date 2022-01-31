@@ -20,7 +20,7 @@ def debug(func: object) -> object:
 
 
 def verbose(message: str, stream: str="stdout") -> object:
-    """Print verbose message about an ongoing operation."""
+    """Print message what the function does or is about to do."""
     def decorator(func: object) -> object:
         @functools.wraps(func)
         def wrapper(*args: tuple, **kwargs: dict) -> None:
