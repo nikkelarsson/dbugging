@@ -19,22 +19,23 @@ def debug(func: object) -> object:
     return wrapper
 
 
-def verbose(message: str, stream: str="stdout") -> object:
+def verbose(_func: object=None, *, message: str=None, stream: str="stdout") -> object:
     """Print message what the function does or is about to do."""
     def decorator(func: object) -> object:
         @functools.wraps(func)
         def wrapper(*args: tuple, **kwargs: dict) -> None:
-            if not isinstance(message, str):
-                raise TypeError(f"Invalid type {message}, needs to be string")
-            if stream == "stdout":
-                print(message, file=sys.stdout)
-            elif stream == "stderr":
-                print(message, file=sys.stderr)
-            else:
-                raise ValueError(f"Invalid value {stream}, use 'stdout' or 'stderr'")
+            if message:
+                if not isinstance(message, str):
+                    raise TypeError("Message has to be string")
+                if stream == "stdout":
+                    print(message, file=sys.stdout)
+                elif stream == "stderr":
+                    print(message, file=sys.stderr)
+                else:
+                    raise ValueError("Stream has to be either 'stdout' or 'stderr'")
             func(*args, **kwargs)
         return wrapper
-    return decorator
+    return decorator if _func is None else decorator(_func)
 
 
 def slow_down(_func: object=None, *, interval: int=1) -> object:
