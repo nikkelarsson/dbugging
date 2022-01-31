@@ -38,13 +38,13 @@ def verbose(_func: object=None, *, message: str=None, stream: str="stdout") -> o
     return decorator if _func is None else decorator(_func)
 
 
-def slow_down(_func: object=None, *, interval: int=1) -> object:
+def slow_down(_func: object=None, *, interval: int | float=1) -> object:
     """Sleep [interval] before calling the function."""
     def decorator(func: object) -> object:
         @functools.wraps(func)
         def wrapper(*args: tuple, **kwargs: dict) -> None:
-            if not isinstance(interval, int):
-                raise TypeError("Interval must be an integer")
+            if not any([isinstance(interval, int), isinstance(interval, float)]):
+                raise TypeError("Interval has to be either int or float")
             time.sleep(interval)
             func(*args, **kwargs)
         return wrapper
