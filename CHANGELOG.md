@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.1a3](https://github.com/nikkelarsson/dbugging/releases/tag/v0.0.1a3)
+### Changed
+- Make decorators @slow_down and @verbose usable with or without parameters
+
 ## [0.0.1a2](https://github.com/nikkelarsson/dbugging/releases/tag/v0.0.1a2)
 ### Added
 - Decorator 'slow_down'
