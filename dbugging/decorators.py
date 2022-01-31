@@ -37,7 +37,7 @@ def verbose(message: str, stream: str="stdout") -> object:
     return decorator
 
 
-def slow_down(interval: int=1) -> object:
+def slow_down(_func: object=None, *, interval: int=1) -> object:
     """Sleep [interval] before calling the function."""
     def decorator(func: object) -> object:
         @functools.wraps(func)
@@ -47,4 +47,4 @@ def slow_down(interval: int=1) -> object:
             time.sleep(interval)
             func(*args, **kwargs)
         return wrapper
-    return decorator
+    return decorator if _func is None else decorator(_func)
