@@ -13,7 +13,7 @@ setup(
     name="dbugging",  # Required
 
     # Version?
-    version="0.0.1a2",  # Required
+    version="0.0.1a3",  # Required
 
     # What does your project do?
     description="Tools to help with debugging your Python code",  # Optional
@@ -49,7 +49,7 @@ setup(
 
         # License?
         # More info at: https://pypi.org/classifiers/
-        #"",
+        "License :: OSI Approved :: MIT License",
 
         # Python versions? These aren't checked by 'pip install'
         # More info at: https://pypi.org/classifiers/
@@ -98,6 +98,6 @@ setup(
     # Additional URLs that are relevant to your project
     project_urls={  # Optional
         #"Bug Reports": "https://github.com...",
-        #"Source": "https://github.com..."
+        "Source": "https://github.com/nikkelarsson/dbugging",
     }
 )
