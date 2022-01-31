@@ -49,7 +49,7 @@ setup(
 
         # License?
         # More info at: https://pypi.org/classifiers/
-        #"",
+        "License :: OSI Approved :: MIT License",
 
         # Python versions? These aren't checked by 'pip install'
         # More info at: https://pypi.org/classifiers/
